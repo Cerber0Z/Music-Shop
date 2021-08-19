@@ -67,9 +67,20 @@ document.addEventListener('keydown', (event) => {
         tom2s();
     }
 
-    if (event.keyCode === 75 || event.keyCode === 74) {
+
+    if (event.keyCode === 74 || event.keyCode === 75) {
         tombases();
     }
+
+
+    if (event.keyCode === 82 || event.keyCode === 84) {
+        saucer1s();
+    }
+
+    if (event.keyCode === 89 || event.keyCode === 85) {
+        saucer2s();
+    }
+
 });
 
 
@@ -268,8 +279,8 @@ function drummer() {
 
 function saucer1s() {
 
-    var fundamental = 50;
-    var ratios = [2, 3, 4.16, 5.43, 6.79, 8.21];
+    var fundamental = 100;
+    var ratios = [8, 2, 4.16, 5.43, 6.79, 8.21];
 
     // Always useful
     var when = audioContext.currentTime;
@@ -279,12 +290,12 @@ function saucer1s() {
     // Bandpass
     var bandpass = audioContext.createBiquadFilter();
     bandpass.type = "bandpass";
-    bandpass.frequency.value = 9000;
+    bandpass.frequency.value = 800;
 
     // Highpass
     var highpass = audioContext.createBiquadFilter();
     highpass.type = "highpass";
-    highpass.frequency.value = 2000;
+    highpass.frequency.value = 100;
 
     // Connect the graph
     bandpass.connect(highpass);
@@ -323,7 +334,7 @@ function hihat() {
     // Bandpass
     var bandpass = audioContext.createBiquadFilter();
     bandpass.type = "bandpass";
-    bandpass.frequency.value = 9000;
+    bandpass.frequency.value = 7000;
 
     // Highpass
     var highpass = audioContext.createBiquadFilter();
@@ -354,17 +365,107 @@ function hihat() {
 
 }
 
+
+function saucer1s() {
+
+
+    var fundamental = 50;
+    var ratios = [2, 3, 4.16, 5.43, 6.79, 8.21];
+
+    // Always useful
+    var when = audioContext.currentTime;
+
+    var gain = audioContext.createGain();
+
+    // Bandpass
+    var bandpass = audioContext.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.value = 7000;
+
+    // Highpass
+    var highpass = audioContext.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.value = 2000;
+
+    // Connect the graph
+    bandpass.connect(highpass);
+    highpass.connect(gain);
+    gain.connect(audioContext.destination);
+
+    // Create the oscillators
+    ratios.forEach(function(ratio) {
+        var osc = audioContext.createOscillator();
+        osc.type = "square";
+        // Frequency is the fundamental * this oscillator's ratio
+        osc.frequency.value = fundamental * ratio;
+        osc.connect(bandpass);
+        osc.start(when);
+        osc.stop(when + 0.3);
+    });
+
+    // Define the volume envelope
+    gain.gain.setValueAtTime(0.00001, when);
+    gain.gain.exponentialRampToValueAtTime(1, when + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.3, when + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.00001, when + 0.3);
+
+}
+
+
+function saucer2s() {
+
+
+    var fundamental = 50;
+    var ratios = [2, 3, 4.16, 5.43, 6.79, 8.21];
+
+    // Always useful
+    var when = audioContext.currentTime;
+
+    var gain = audioContext.createGain();
+
+    // Bandpass
+    var bandpass = audioContext.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.value = 7000;
+
+    // Highpass
+    var highpass = audioContext.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.value = 2000;
+
+    // Connect the graph
+    bandpass.connect(highpass);
+    highpass.connect(gain);
+    gain.connect(audioContext.destination);
+
+    // Create the oscillators
+    ratios.forEach(function(ratio) {
+        var osc = audioContext.createOscillator();
+        osc.type = "square";
+        // Frequency is the fundamental * this oscillator's ratio
+        osc.frequency.value = fundamental * ratio;
+        osc.connect(bandpass);
+        osc.start(when);
+        osc.stop(when + 0.3);
+    });
+
+    // Define the volume envelope
+    gain.gain.setValueAtTime(0.00001, when);
+    gain.gain.exponentialRampToValueAtTime(1, when + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.3, when + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.00001, when + 0.3);
+
+}
+
+
 //Menu
 function mostrar() {
     document.getElementById("menu").style.width = "400px";
-    document.getElementById("contenido").style.marginLeft = "400px";
     document.getElementById("abrir").style.display = "none";
-    document.getElementById("cerrar").style.display = "inline";
+
 }
 
 function ocultar() {
     document.getElementById("menu").style.width = "0";
-    document.getElementById("contenido").style.marginLeft = "0";
     document.getElementById("abrir").style.display = "inline";
-    document.getElementById("cerrar").style.display = "none";
 }

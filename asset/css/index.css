@@ -77,6 +77,15 @@ li {
     margin-top: -35px;
 }
 
+#TextMenu {
+    text-decoration: none;
+    color: #EDEDED;
+    text-align: center;
+    font-size: xx-large;
+    font-family: system-ui;
+    margin-top: 5%;
+}
+
 #shopb {
     background-image: url(../img/botonshop.png);
     background-repeat: no-repeat;
@@ -92,15 +101,6 @@ li {
 #shopb:hover {
     background-image: url(../img/botonshop2.png);
     transition-duration: 300ms;
-}
-
-#TextMenu {
-    text-decoration: none;
-    color: #EDEDED;
-    text-align: center;
-    font-size: xx-large;
-    font-family: system-ui;
-    margin-top: 5%;
 }
 
 .banner-name {
