@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../img/Topographical-MacBook.jpg);
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#menu {
+    position: fixed;
+    height: 100%;
+    width: 400px;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: rgba(31, 31, 31, 0.8);
+    backdrop-filter: blur(15px);
+    overflow-x: hidden;
+    transition: 0.4s;
+    padding: 1rem 0;
+    box-sizing: border-box;
+}
+
+ul.menu2 li {
+    display: block;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.option {
+    text-decoration: none;
+    color: #EDEDED;
+    letter-spacing: 0.1em;
+    font-size: xx-large;
+    font-family: system-ui;
+}
+
+.menu2 {
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: center;
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+
+#menus {
+    margin-top: 25px;
+    margin-left: 36px;
+    position: absolute;
+}
+
+#closemenu {
+    margin-left: 335px;
+    margin-top: -35px;
+}
+
+#TextMenu {
+    text-decoration: none;
+    color: #EDEDED;
+    text-align: center;
+    font-size: xx-large;
+    font-family: system-ui;
+    margin-top: 5%;
+}
+
+.banner-name {
+    margin-left: -76%;
+    width: 100%;
+    margin-top: 40%;
+}
+
+.logo {
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    height: 500px;
+    margin-left: 25%;
+    margin-top: 0%;
+}
+
+#wrapper {
+    position: absolute;
+    z-index: 2;
+}
+
+.drumm {
+    background-image: url(../img/Vector.png);
+    width: 980px;
+    height: 964px;
+    margin-left: 32.1%;
+    position: absolute;
+    margin-top: -27%;
+}
+
+.eclipse {
+    position: absolute;
+    margin-top: 77%;
+    margin-left: -16%;
+    width: 15%;
+}
+
+.electric-drumm {
+    background-image: url(../img/bataca-electrica.png);
+    width: 121%;
+    height: 964px;
+    background-repeat: no-repeat;
+    background-size: 65% 65%;
+    margin-left: 14%;
+    margin-top: -54%;
+}
+
+#hihat {
+    height: 44px;
+    width: 142px;
+    margin-top: -85.3%;
+    margin-left: 226px;
+    cursor: pointer;
+}
+
+#saucer1 {
+    height: 35px;
+    width: 127px;
+    margin-top: -17.5%;
+    margin-left: 37.3%;
+    cursor: pointer;
+}
+
+#saucer2 {
+    height: 60px;
+    width: 127px;
+    margin-left: 64.5%;
+    cursor: pointer;
+}
+
+#tom1 {
+    width: 102px;
+    height: 50px;
+    margin-top: 29px;
+    margin-left: 41%;
+    cursor: pointer;
+}
+
+#tom2 {
+    width: 107px;
+    height: 50px;
+    margin-top: -49px;
+    margin-left: 54%;
+    cursor: pointer;
+}
+
+#tombase {
+    height: 38px;
+    width: 113px;
+    margin-left: 74.2%;
+    margin-top: 5.5%;
+    cursor: pointer;
+}
+
+#drummer {
+    width: 110px;
+    height: 42px;
+    margin-left: 32.5%;
+    margin-top: -2%;
+    cursor: pointer;
+}
+
+#drum {
+    width: 56px;
+    height: 59px;
+    margin-left: 50%;
+    margin-top: 2.5%;
+    border-radius: 50px;
+    cursor: pointer;
+}
