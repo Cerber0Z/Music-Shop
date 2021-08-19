@@ -31,10 +31,24 @@ drummers.addEventListener('click', function() {
 
 })
 
+tombase.addEventListener('click', function() {
+    tombases();
+
+})
+
+tom1.addEventListener('click', function() {
+    tom1s();
+
+})
+
+tom2.addEventListener('click', function() {
+    tom2s();
+
+})
 
 // evento keydown
 document.addEventListener('keydown', (event) => {
-    if (event.keyCode === 72) {
+    if (event.keyCode === 78) {
         hihat();
     }
 
@@ -42,11 +56,19 @@ document.addEventListener('keydown', (event) => {
         drums();
     }
 
-    if (event.keyCode === 86) {
+    if (event.keyCode === 86 || event.keyCode === 67) {
         drummer();
     }
-    if (event.keyCode === 67) {
-        drummer();
+
+    if (event.keyCode === 68 || event.keyCode === 70) {
+        tom1s();
+    }
+    if (event.keyCode === 71 || event.keyCode === 72) {
+        tom2s();
+    }
+
+    if (event.keyCode === 75 || event.keyCode === 74) {
+        tombases();
     }
 });
 
@@ -92,6 +114,119 @@ function drums() {
 
 }
 
+function tom1s() {
+
+    var osc = audioContext.createOscillator();
+    var osc2 = audioContext.createOscillator();
+    var gainOsc = audioContext.createGain();
+    var gainOsc2 = audioContext.createGain();
+
+    gainOsc.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    gainOsc2.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc2.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    osc.frequency.setValueAtTime(1, audioContext.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+    osc2.frequency.setValueAtTime(200, audioContext.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1);
+
+    osc.connect(gainOsc);
+    osc2.connect(gainOsc2);
+    gainOsc2.connect(mixGain);
+    gainOsc.connect(mixGain);
+    gainOsc.connect(audioContext.destination);
+    gainOsc2.connect(audioContext.destination);
+
+
+
+    osc.start(audioContext.currentTime);
+    osc2.start(audioContext.currentTime);
+
+    osc.stop(audioContext.currentTime + 0.5);
+    osc2.stop(audioContext.currentTime + 0.5);
+
+}
+
+function tom2s() {
+
+    var osc = audioContext.createOscillator();
+    var osc2 = audioContext.createOscillator();
+    var gainOsc = audioContext.createGain();
+    var gainOsc2 = audioContext.createGain();
+
+    gainOsc.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    gainOsc2.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc2.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    osc.frequency.setValueAtTime(1, audioContext.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+    osc2.frequency.setValueAtTime(310, audioContext.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1);
+
+    osc.connect(gainOsc);
+    osc2.connect(gainOsc2);
+    gainOsc2.connect(mixGain);
+    gainOsc.connect(mixGain);
+    gainOsc.connect(audioContext.destination);
+    gainOsc2.connect(audioContext.destination);
+
+
+
+    osc.start(audioContext.currentTime);
+    osc2.start(audioContext.currentTime);
+
+    osc.stop(audioContext.currentTime + 0.5);
+    osc2.stop(audioContext.currentTime + 0.5);
+
+}
+
+function tombases() {
+
+    var osc = audioContext.createOscillator();
+    var osc2 = audioContext.createOscillator();
+    var gainOsc = audioContext.createGain();
+    var gainOsc2 = audioContext.createGain();
+
+    gainOsc.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    gainOsc2.gain.setValueAtTime(1, audioContext.currentTime);
+    gainOsc2.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+
+    osc.frequency.setValueAtTime(1, audioContext.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.5);
+
+    osc2.frequency.setValueAtTime(600, audioContext.currentTime);
+    osc2.frequency.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 1);
+
+    osc.connect(gainOsc);
+    osc2.connect(gainOsc2);
+    gainOsc2.connect(mixGain);
+    gainOsc.connect(mixGain);
+    gainOsc.connect(audioContext.destination);
+    gainOsc2.connect(audioContext.destination);
+
+
+
+    osc.start(audioContext.currentTime);
+    osc2.start(audioContext.currentTime);
+
+    osc.stop(audioContext.currentTime + 0.5);
+    osc2.stop(audioContext.currentTime + 0.5);
+
+}
 
 function drummer() {
 
@@ -131,7 +266,48 @@ function drummer() {
 
 }
 
+function saucer1s() {
 
+    var fundamental = 50;
+    var ratios = [2, 3, 4.16, 5.43, 6.79, 8.21];
+
+    // Always useful
+    var when = audioContext.currentTime;
+
+    var gain = audioContext.createGain();
+
+    // Bandpass
+    var bandpass = audioContext.createBiquadFilter();
+    bandpass.type = "bandpass";
+    bandpass.frequency.value = 9000;
+
+    // Highpass
+    var highpass = audioContext.createBiquadFilter();
+    highpass.type = "highpass";
+    highpass.frequency.value = 2000;
+
+    // Connect the graph
+    bandpass.connect(highpass);
+    highpass.connect(gain);
+    gain.connect(audioContext.destination);
+
+    // Create the oscillators
+    ratios.forEach(function(ratio) {
+        var osc = audioContext.createOscillator();
+        osc.type = "square";
+        // Frequency is the fundamental * this oscillator's ratio
+        osc.frequency.value = fundamental * ratio;
+        osc.connect(bandpass);
+        osc.start(when);
+        osc.stop(when + 0.3);
+    });
+
+    // Define the volume envelope
+    gain.gain.setValueAtTime(0.00001, when);
+    gain.gain.exponentialRampToValueAtTime(1, when + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.3, when + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.00001, when + 0.3);
+}
 
 function hihat() {
 
